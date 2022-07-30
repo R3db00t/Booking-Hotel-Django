@@ -1,0 +1,57 @@
+{% extends 'basic.html' %} {% block title %}Dashboard {% endblock title %} {% block body %}
+{% load app_tags %}
+<div class="pt-5"
+    style="background: url(https://img.thuthuatphanmem.vn/uploads/2018/10/26/anh-dep-dao-vinh-viet-nam_055419149.jpg); background-size: cover; min-height: 95vh;">
+    <div class="container p-3 shadow rounded mt-5 bg-white " style="overflow: auto;">
+        <h3 class="text-center text-primary fw-bold mt-3">My Bookings</h3>
+        <table class="table" style="" id="table3_id">
+            <thead>
+                <th>User</th>
+                <th>Room</th>
+                <th>Location</th>
+                <th>Person</th>
+                <th>Check in</th>
+                <th>Check out</th>
+                <th>Price</th>
+                <th>Actions</th>
+                <th>Views</th>
+            </thead>
+            {% for each_booking in bookings %}
+            <tr>
+                <td>{{each_booking.guest.username}}</td>
+                <td>{{each_booking.room.roomnumber}}</td>
+                <td>{{each_booking.room.hotel.location}}</td>
+                <td>{{each_booking.room.capacity}}</td>
+                <td>{{each_booking.check_in}}</td>
+                <td>{{each_booking.check_out}}</td>
+                <td>{{each_booking.room.price}}</td>
+
+
+                {% if each_booking.is_rate == 0 %}
+                <td><a href="/user/vote-room?book_id={{each_booking.id}}"><Button
+                            class="btn btn-primary">Vote</Button></a>
+                </td>
+
+                {% else %}
+                <td><a href=""><Button class="btn btn-primary">Voted</Button></a></td>
+                {% endif %}
+
+                <td><a href="/user/view-room?roomid={{each_booking.room.id}}"><Button class="btn btn-primary">View</Button></a></td>
+            </tr>
+            {% endfor %}
+
+
+        </table>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('#table3_id').DataTable({
+            searching: true,
+            paging: true,
+            scrollY: 400,
+            select: true
+        });
+    });
+</script>
+{% endblock body %}

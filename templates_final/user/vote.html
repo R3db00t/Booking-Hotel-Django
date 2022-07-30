@@ -1,0 +1,128 @@
+{% extends 'basic.html' %} {% block title %} {% endblock title %} {% block body %}
+<div
+  class="pt-5"
+  style="
+    background: url(https://img.thuthuatphanmem.vn/uploads/2018/10/26/anh-dep-dao-vinh-viet-nam_055419149.jpg);
+    background-size: cover;
+    min-height: 95vh;
+  "
+>
+  <div class="container mt-5 pt-5">
+    <div class="bg-white rounded shadow p-5">
+      <h3 class="fw-bold text-warning text-center mb-0">Ratings</h3>
+      <div class="row">
+        <div class="col-md-6 col-lg-6 col-xlg-6 col-sm-12 mx-auto">
+          <form action="/user/vote-room/vote" method="POST">
+            {%csrf_token%} {%load app_tags%}
+
+            <div class="form-group hidden">
+              <label for="person">Username:</label>
+              <input
+                type="text"
+                class="form-control mt-1"
+                id="username"
+                name="username"
+                disabled
+                value="{{request.user}}"
+              />
+            </div>
+            <!-- <div class="form-group">
+                    <label for="person">Vote:</label>
+                    <input type="number" class="form-control " id="person" name="vote" min="1" max="5" required="true">
+                </div> -->
+
+            <div class="container-fluid px-0 mt-3">
+              <div class="row form-group">
+                <div class="col-5 col-md-2">
+                  <p>Rate</p>
+                </div>
+                <div class="col-7 col-md-10">
+                  <div class="container d-flex justify-content-center">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="stars">
+                            <input
+                              class="star star-5"
+                              id="star-5"
+                              type="radio"
+                              name="star"
+                              value="1"
+                            />
+                            <label class="star star-5" for="star-5"></label>
+                            <input
+                              class="star star-4"
+                              id="star-4"
+                              type="radio"
+                              name="star"
+                              value="2"
+                            />
+                            <label class="star star-4" for="star-4"></label>
+                            <input
+                              class="star star-3"
+                              id="star-3"
+                              type="radio"
+                              name="star"
+                              value="3"
+                            />
+                            <label class="star star-3" for="star-3"></label>
+                            <input
+                              class="star star-2"
+                              id="star-2"
+                              type="radio"
+                              name="star"
+                              value="4"
+                            />
+                            <label class="star star-2" for="star-2"></label>
+                            <input
+                              class="star star-1"
+                              id="star-1"
+                              type="radio"
+                              name="star"
+                              value="5"
+                            />
+                            <label class="star star-1" for="star-1"></label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="text-center">
+              <div class="row">
+                <div class="col-12 mb-3">
+                  <div class="form-group">
+                    <textarea
+                      class="form-control"
+                      placeholder="Leave a comment here"
+                      id="cmt"
+                      style="height: 100px"
+                      name="cmt"
+                    ></textarea>
+                    <label for="floatingTextarea2">Comments</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- <div class="form-group">
+              <label for="username">Comment:</label>
+              <input type="text" class="form-control " id="cmt" name="cmt">
+          </div> -->
+
+            <div class="w-100 text-center">
+              <button
+                type="submit"
+                class="btn mt-3 btn-warning text-center mx-auto"
+              >
+                Submit
+              </button>
+              <input type="hidden" name="book_id" value={{booking.id}}>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock body %}
