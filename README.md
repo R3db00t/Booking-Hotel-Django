@@ -1,5 +1,5 @@
 # Booking Hotel Django
-A hotel booking website using Django Framework
+A hotel booking website using Django Framework - Project from class NT208 
 
 1. Features For Owner
 	- Can check availability of rooms
